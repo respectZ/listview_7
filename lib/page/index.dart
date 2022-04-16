@@ -130,7 +130,7 @@ class _IndexPageState extends State<IndexPage> {
                         isLarge: true,
                         title: widget.candi[indexCandi].getTitle(),
                         deskripsi: widget.candi[indexCandi].getDeskripsi(),
-                        // image: widget.candi[indexCandi].getImage(),
+                        image: widget.candi[indexCandi].getImage(),
                         callback: (() => setState(() => {
                               isOpeningDetail = false,
                               indexCandi = -1,
