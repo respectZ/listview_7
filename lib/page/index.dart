@@ -80,7 +80,8 @@ class _IndexPageState extends State<IndexPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (!isOpeningDetail && !isLargeScreen(context))
+                if (!isOpeningDetail && !isLargeScreen(context) ||
+                    isLargeScreen(context))
                   Expanded(
                     child: Obx(
                       () => ListView.builder(
