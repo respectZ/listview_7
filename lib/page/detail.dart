@@ -34,7 +34,15 @@ class _InfoDetailState extends State<InfoDetail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(child: Text(widget.title!)),
+              Center(
+                child: Text(
+                  widget.title!,
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
               if (widget.image != null) widget.image!,
               if (widget.deskripsi != null)
                 ...List<Widget>.generate(
