@@ -5,7 +5,6 @@ import 'package:listview_7/page/detail.dart';
 import '../model/candi.dart';
 
 bool isLargeScreen(BuildContext context) {
-  print(MediaQuery.of(context).size.width);
   if (MediaQuery.of(context).size.width >= 992) {
     return true;
   }
@@ -101,7 +100,12 @@ class _IndexPageState extends State<IndexPage> {
                               if (isLargeScreen(context))
                                 {
                                   setState(() => {
-                                        indexCandi = index,
+                                        // indexCandi = index,
+                                        indexCandi = widget.candi
+                                            .map((e) => e.getTitle())
+                                            .toList()
+                                            .indexOf(
+                                                _titles.getTitles()[index]),
                                         isOpeningDetail = true,
                                       }),
                                 }
