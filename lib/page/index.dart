@@ -80,52 +80,45 @@ class _IndexPageState extends State<IndexPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Obx(
-                    () => ListView.builder(
-                      itemCount: _titles.getTitles().length,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          margin: EdgeInsets.fromLTRB(0.0, 4.0, 0.0, 4.0),
-                          child: ListTile(
-                            title: Text(_titles.getTitles()[index]),
-                            tileColor: indexCandi != -1 &&
-                                    widget.candi[indexCandi].getTitle() ==
-                                        _titles.getTitles()[index]
-                                ? Colors.red
-                                : Colors.grey[900],
-                            leading: Icon(Icons.build_circle_rounded),
-                            trailing: Icon(Icons.favorite_border_rounded),
-                            onTap: () => {
-                              if (isLargeScreen(context))
-                                {
-                                  setState(() => {
-                                        // indexCandi = index,
-                                        indexCandi = widget.candi
-                                            .map((e) => e.getTitle())
-                                            .toList()
-                                            .indexOf(
-                                                _titles.getTitles()[index]),
-                                        isOpeningDetail = true,
-                                      }),
-                                }
-                              else
-                                {
-                                  Get.to(InfoDetail(
-                                    isLarge: false,
-                                  ))
-                                }
-                            },
-                          ),
-                        );
-                      },
+                if (!isOpeningDetail && !isLargeScreen(context))
+                  Expanded(
+                    child: Obx(
+                      () => ListView.builder(
+                        itemCount: _titles.getTitles().length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.fromLTRB(0.0, 4.0, 0.0, 4.0),
+                            child: ListTile(
+                              title: Text(_titles.getTitles()[index]),
+                              tileColor: indexCandi != -1 &&
+                                      widget.candi[indexCandi].getTitle() ==
+                                          _titles.getTitles()[index]
+                                  ? Colors.red
+                                  : Colors.grey[900],
+                              leading: Icon(Icons.build_circle_rounded),
+                              trailing: Icon(Icons.favorite_border_rounded),
+                              onTap: () => {
+                                setState(() => {
+                                      // indexCandi = index,
+                                      indexCandi = widget.candi
+                                          .map((e) => e.getTitle())
+                                          .toList()
+                                          .indexOf(_titles.getTitles()[index]),
+                                      isOpeningDetail = true,
+                                    }),
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
                 if (isOpeningDetail)
                   Container(
-                      margin: EdgeInsets.fromLTRB(8.0, 4.0, 0.0, 0.0),
-                      width: 450,
+                      margin: EdgeInsets.fromLTRB(8.0, 4.0, 4.0, 0.0),
+                      width: isLargeScreen(context)
+                          ? 450
+                          : MediaQuery.of(context).size.width - 28,
                       child: InfoDetail(
                         isLarge: true,
                         title: widget.candi[indexCandi].getTitle(),
