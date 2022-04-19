@@ -62,18 +62,20 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Card(
-          child: Container(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              onChanged: ((value) => _titles.find(value)),
-              decoration: InputDecoration(
-                icon: Icon(Icons.search_rounded),
-                hintText: 'Cari',
+        if (!isOpeningDetail && !isLargeScreen(context) ||
+            isLargeScreen(context))
+          Card(
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                onChanged: ((value) => _titles.find(value)),
+                decoration: InputDecoration(
+                  icon: Icon(Icons.search_rounded),
+                  hintText: 'Cari',
+                ),
               ),
             ),
           ),
-        ),
         Expanded(
           child: Container(
             margin: EdgeInsets.all(8.0),
